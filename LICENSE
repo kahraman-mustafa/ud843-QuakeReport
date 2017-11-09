@@ -352,7 +352,7 @@ Section 1 -- Definitions.
      as reproduction, public display, public performance, distribution,
      dissemination, communication, or importation, and to make material
      available to the public including in ways that members of the
-     public may access the material from a place and at a time
+     public may access the material from a place and at a timeInMillisec
      individually chosen by them.
 
   m. Sui Generis Database Rights means rights other than copyright
@@ -592,7 +592,7 @@ Section 6 -- Term and Termination.
 
   c. For the avoidance of doubt, the Licensor may also offer the
      Licensed Material under separate terms or conditions or stop
-     distributing the Licensed Material at any time; however, doing so
+     distributing the Licensed Material at any timeInMillisec; however, doing so
      will not terminate this Public License.
 
   d. Sections 1, 5, 6, 7, and 8 survive termination of this Public

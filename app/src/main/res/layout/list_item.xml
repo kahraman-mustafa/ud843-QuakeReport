@@ -13,18 +13,35 @@
         android:id="@+id/earthquake_magnitude"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="8.2" />
 
     <TextView
-        android:id="@+id/earthquake_location"
+        android:id="@+id/earthquake_locationoffset"
         android:layout_width="0dp"
-        android:layout_weight="3"
-        android:layout_height="wrap_content" />
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="Near the" />
+
+    <TextView
+        android:id="@+id/earthquake_locationprime"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="San Francisco, CA" />
+
+    <TextView
+        android:id="@+id/earthquake_date"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="Mar 06, 2010" />
 
     <TextView
         android:id="@+id/earthquake_time"
         android:layout_width="0dp"
-        android:layout_weight="2"
-        android:layout_height="wrap_content" />
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="3:00 PM" />
 
 </LinearLayout>

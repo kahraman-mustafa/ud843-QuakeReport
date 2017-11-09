@@ -77,11 +77,11 @@ public final class QueryUtils {
                 // Extract desired earthquake information from properties JSONObject
                 Double magnitude = properties.getDouble(KEY_MAGNITUDE);
                 String location = properties.getString(KEY_LOCATION);
-                Long time = properties.getLong(KEY_TIME);
+                Long timeInMillisec = properties.getLong(KEY_TIME);
                 String website = properties.getString(KEY_WEBSITE);
 
                 // Create an earthquake object than add it to the ArrayList of earthquakes
-                Earthquake earthquake = new Earthquake(magnitude, location, time, website);
+                Earthquake earthquake = new Earthquake(magnitude, location, timeInMillisec, website);
                 earthquakes.add(earthquake);
             }
 

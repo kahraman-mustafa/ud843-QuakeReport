@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /*
 * {@link EarthquakeAdapter} is an {@link ArrayAdapter} that can provide the layout for each list
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
     private static final String LOG_TAG = EarthquakeAdapter.class.getSimpleName();
+    private static final String LOCATION_SEPERATOR = "of";
 
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
@@ -64,21 +67,72 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // set this text on the magnitude TextView
         magTextView.setText(Double.toString(currentEarthquake.getMagnitude()));
 
-        // Find the TextView in the list_item.xml layout with the ID earthquake_location
-        TextView locationTextView = (TextView) listItemView.findViewById(R.id.earthquake_location);
-        // Get the location from the current Earthquake object and
-        // set this text on the location TextView
-        locationTextView.setText(currentEarthquake.getLocation());
+        // Find the TextView in the list_item.xml layout with the ID earthquake_locationprime
+        TextView locationPrimeTextView = (TextView) listItemView.findViewById(R.id.earthquake_locationprime);
+        TextView locationOffsetTextView = (TextView) listItemView.findViewById(R.id.earthquake_locationoffset);
 
+        // Get originalLocation info and check whether it contains "of" (offset information)
+        String originalLocation = currentEarthquake.getLocation();
+        String locationPrime, locationOffset;
+        boolean hasOffset = originalLocation.contains(LOCATION_SEPERATOR);
+
+
+        if (hasOffset) {
+            // if originalLocation contains "of" split it to prime and offset
+            String[] locationParts = originalLocation.split(LOCATION_SEPERATOR);
+            locationOffset = locationParts[0] + LOCATION_SEPERATOR;
+            locationPrime = locationParts[1];
+        } else {
+            // if originalLocation don't contain "of", set originalLocation to prime, and "Near the" to offset
+            locationOffset = getContext().getString(R.string.near_the);
+            locationPrime = originalLocation;
+        }
+
+        // Set the string values of originalLocation prime and offset to TextViews
+        locationPrimeTextView.setText(locationPrime);
+        locationOffsetTextView.setText(locationOffset);
+
+        // Find the TextView in the list_item.xml layout with the ID earthquake_date
+        TextView dateTextView = (TextView) listItemView.findViewById(R.id.earthquake_date);
         // Find the TextView in the list_item.xml layout with the ID earthquake_time
         TextView timeTextView = (TextView) listItemView.findViewById(R.id.earthquake_time);
-        // Get the time from the current Earthquake object and
-        // set this text on the time TextView
-        timeTextView.setText(Long.toString(currentEarthquake.getTime()));
+
+        /* Get the time in millisec from the current Earthquake object and
+         * convert it to user friendly formatted time and date
+         */
+        Date dateObject = new Date(currentEarthquake.getTimeInMillisec());
+        String formattedDate = formatDate(dateObject);
+        String formattedTime = formatTime(dateObject);
+
+        // set formatted time and date on the TextViews
+        dateTextView.setText(formattedDate);
+        timeTextView.setText(formattedTime);
 
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView
         return listItemView;
+    }
+
+    /**
+     * Return the formatted date String (i.e. Mar 03, 2016) from a Date object
+     *
+     * @param dateObject
+     * @return formatted date String
+     */
+    private String formatDate(Date dateObject) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy");
+        return dateFormatter.format(dateObject);
+    }
+
+    /**
+     * Return the formatted time String (i.e. 4:15, PM) from a Date object
+     *
+     * @param dateObject
+     * @return
+     */
+    private String formatTime(Date dateObject) {
+        SimpleDateFormat timeFormatter = new SimpleDateFormat("h:mm a");
+        return timeFormatter.format(dateObject);
     }
 
 }
