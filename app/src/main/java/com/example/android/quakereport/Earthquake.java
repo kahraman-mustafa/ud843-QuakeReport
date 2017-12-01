@@ -8,13 +8,13 @@ public class Earthquake {
     private double magnitude;
     private String location;
     private Long timeInMillisec;
-    private String website;
+    private String url;
 
-    public Earthquake(double magnitude, String location, Long timeInMillisec, String website) {
+    public Earthquake(double magnitude, String location, Long timeInMillisec, String url) {
         this.magnitude = magnitude;
         this.location = location;
         this.timeInMillisec = timeInMillisec;
-        this.website = website;
+        this.url = url;
     }
 
     public Earthquake() {
@@ -45,12 +45,12 @@ public class Earthquake {
         this.timeInMillisec = timeInMillisec;
     }
 
-    public String getWebsite() {
-        return website;
+    public String getUrl() {
+        return url;
     }
 
-    public void setWebsite(String website) {
-        this.website = website;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Earthquake {
                 "magnitude=" + magnitude +
                 ", location='" + location + '\'' +
                 ", timeInMillisec=" + timeInMillisec +
-                ", website='" + website + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

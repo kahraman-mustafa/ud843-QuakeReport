@@ -15,8 +15,8 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /*
 * {@link EarthquakeAdapter} is an {@link ArrayAdapter} that can provide the layout for each list
@@ -35,7 +35,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
      * @param context     The current context. Used to inflate the layout file.
      * @param earthquakes A List of Earthquake objects to display in a list
      */
-    public EarthquakeAdapter(Activity context, ArrayList<Earthquake> earthquakes) {
+    public EarthquakeAdapter(Activity context, List<Earthquake> earthquakes) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
