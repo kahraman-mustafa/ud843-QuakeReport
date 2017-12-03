@@ -4,6 +4,7 @@ package com.example.android.quakereport;
  * Created by kahra on 8.11.2017.
  */
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -49,6 +50,16 @@ public final class QueryUtils {
      * Query the USGS dataset and return a list of {@link Earthquake} objects.
      */
     public static List<Earthquake> fetchEarthquakeData(String requestUrl) {
+
+        /*
+        // Added to pretend like network process take some time to display progress bar longer
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        */
+
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -148,6 +159,10 @@ public final class QueryUtils {
      * parsing a JSON response.
      */
     private static ArrayList<Earthquake> extractFeatureFromJson(String jsonResponse) {
+        // If JSON response has no content e.g. it is empty or null, return early
+        if (TextUtils.isEmpty(jsonResponse)) {
+            return null;
+        }
 
         // Create an empty ArrayList that we can start adding earthquakes to
         ArrayList<Earthquake> earthquakes = new ArrayList<>();
