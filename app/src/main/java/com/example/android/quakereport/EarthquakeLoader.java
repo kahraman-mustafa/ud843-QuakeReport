@@ -50,8 +50,9 @@ public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
             return null;
         }
 
-        List<Earthquake> result = QueryUtils.fetchEarthquakeData(mUrl);
         Log.i(LOG_TAG, "loadInBackground(): Call for fetching data from UGS");
+        List<Earthquake> result = QueryUtils.fetchEarthquakeData(mUrl);
+
         return result;
     }
 }

@@ -101,6 +101,9 @@ public final class QueryUtils {
         if (url == null) {
             return jsonResponse;
         }
+
+        Log.i(LOG_TAG, "Http Request URL: " + url.toString());
+
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
 
